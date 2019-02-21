@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>享像派</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css"/>
+    <script type="text/javascript" src="../JS/CSInterface.js"></script>
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+<div id="photos" style="margin-left: 1%;margin-right: 1%;">
+    <button class="btn-secondary" @click="back">返回</button>
+    <button class="btn-secondary" @click="postImage">保存</button><br>
+    <div v-for="(photo,index) in photos" style="display: inline-block;width: 33%;margin-bottom: 0.5%;" :style="{marginRight:(index%2!=0 ? '0.5%' : '0px')}">
+        <img :src="photo.thumbnail" width="100%" @click="openInPS(photo)">
+    </div>
+</div>
+
+<div id="script-box">
+    <script type="text/javascript" src="../JS/axios.js"></script>
+    <script type="text/javascript" src="../JS/photos.js"></script>
+</div>
+</body>
+</html>

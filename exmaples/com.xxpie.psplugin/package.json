@@ -1,0 +1,11 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "debug": "^2.6.9",
+    "jsonwebtoken": "^8.2.1",
+    "lodash": "^4.17.10",
+    "qiniu": "^7.1.3",
+    "qs": "^6.5.1"
+  }
+}

@@ -1,0 +1,110 @@
+#dialog {
+    position: fixed;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(83,83,83,0.1);
+    z-index: 2000;
+}
+
+#dialog .box{
+    position: fixed;
+    display: inline-block;
+    padding:32px 24px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 284px;
+    z-index: 2001;
+    box-sizing: border-box;
+    background:rgba(103,103,103,1);
+    box-shadow:0px 8px 5px 0px rgba(51,51,51,0.3);
+    border-radius:4px;
+}
+
+#dialog .box .title {
+    font-size:18px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(214,214,214,1);
+    line-height:25px;
+    text-align: center;
+}
+
+#dialog .box .content {
+    margin-top: 16px;
+    font-size:14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(214,214,214,1);
+    line-height:20px;
+}
+
+#dialog .box .no-longer-prompt {
+   display: flex;
+   align-items: center;
+   margin-top: 40px;
+}
+
+#dialog .box .no-longer-prompt > img{
+   width:16px;height:16px;
+}
+
+#dialog .box .no-longer-prompt > span{
+   margin-left:2px;
+   font-size:14px;
+   font-family:PingFangSC-Regular;
+   font-weight:400;
+   color:rgba(214,214,214,1);
+   line-height:20px;
+}
+
+#dialog .box .btn-group {
+    margin-top: 20px;
+    font-size: 0px;
+    display: flex;
+    display: -webkit-flex;
+}
+
+#dialog .box .btn-group button {
+    border: none;
+    background-color: #fff;
+    box-sizing: border-box;
+    min-width: 70px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#dialog .box .btn-group .btn-cancel {
+    flex: 1;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    font-size: 0;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    /*color:rgba(255,255,255,1);*/
+    background: url("../STATIC/IMG/icons/ic_close.png") no-repeat;
+    outline: none;
+    background-size: 16px;
+    position: fixed;
+    top: 12px;
+    left: 256px;
+}
+
+#dialog .box .btn-group .btn-confirm {
+    flex: 1;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    outline: none;
+    background:rgba(255,102,20,1);
+    border-radius:24px;
+}

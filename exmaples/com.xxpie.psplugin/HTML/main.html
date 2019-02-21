@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 0px">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+    <title>SharePics</title>
+    <link type="text/css" rel="stylesheet" href="../CSS/main.css" />
+    <link type="text/css" rel="stylesheet" href="../CSS/dialog.css" />
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div id="head">
+            <button id="tab_1" class="tab_title" @click="showTab(1)" :disabled="currentTab == 1">
+                相册列表</button>
+            <button id="tab_2" class="tab_title" @click="showTab(2)" :disabled="currentTab == 2">
+                工作台</button>
+            <button id="tab_3" class="tab_title" @click="showTab(3)" :disabled="currentTab == 3">
+                已处理</button>
+            <button id="tab_4" class="tab_title" @click="showTab(4)" :disabled="currentTab == 4">
+                更多</button>
+        </div>
+        <div id="content">
+            <div id="tasklist" v-if="currentTab === 1 && !isLoading">
+                <div id="tasklist-head">
+                    <input id="tasklist-code" type="text" placeholder="请输入协同修图码" v-model="searchCode">
+                    <img v-if="searchCode" class="deleted-code" src="../STATIC/IMG/icons/deleted.png" @click="deletedCode">
+                    <input class="tasklist-search" type="button" @click="search">
+                </div>
+                <div class="list">
+                    <div class="task-item" v-for="(task, index) in tasks">
+                        <img class="task-thumb" v-if="task.cover_photo_url != null" :src="task.cover_photo_url" />
+                        <img class="task-thumb" v-else src="../STATIC/IMG/icons/default_cover.png" />
+                        <div class="task-right">
+                            <div class="task-name text">{{ task.task_name }}</div>
+                            <br>
+                            <div style="overflow: hidden">
+                                <div class="task-photocount text">{{ task.photo_count }}张</div>
+                                <button class="task-add text" @click="checkPhotos(index)">加入工作台</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img style="width:63px; height:14px; margin:24px 118px 40px 118px" src="../STATIC/IMG/icons/end.png" />
+                    </div>
+                </div>
+            </div>
+            <!--工作台-->
+            <div id="photos" v-else-if="currentTab === 2 && !isLoading">
+                <div class="list" v-if="designTaskDetailList">
+                    <div class="task-item" v-for="(designTask, index) in designTasks" @click="loadTaskPics(designTask, index)">
+                        <div style="display: inline-block; position: relative">
+                            <img class="task-thumb" v-if="designTask.cover_photo_url != null" :src="designTask.cover_photo_url" />
+                            <img class="task-thumb" v-else src="../STATIC/IMG/icons/default_cover.png" />
+                            <img class="task-handle" style="width:40px; height: 16px; z-index: 1; position: absolute; top: 6px; left: 0;"
+                                v-if="index == currentTaskIndex" src="../STATIC/IMG/icons/handle.png" />
+                        </div>
+                        <div class="task-right">
+                            <div class="task-name text">{{ designTask.task_name }}</div>
+                            <br>
+                            <div style="overflow: hidden">
+                                <div class="task-photocount text">{{ designTask.photo_count }}张</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img style="width:63px; height:14px; margin:24px 118px 40px 118px" src="../STATIC/IMG/icons/end.png" />
+                    </div>
+                </div>
+                <div v-else-if="designTaskDetail">
+                    <div style="margin-bottom: 44px; margin-left: 3px; margin-top: 3px" v-if="bigImageBack">
+                        <div v-for="(photo,index) in photos" style="display: inline-block;width:96px;margin-bottom: 3px;position: relative; margin-right: 3px">
+                            <img class="img-thumbnail" :src="photo.url_thumbnail" width="100%" @click="showBigPhoto(index,photo)">
+                            <img :src="(selectedCurrentPhotos[photo.photo_id]) ? '../STATIC/IMG/icons/choose.png' : '../STATIC/IMG/icons/unchoose.png'"
+                                v-if="operation" width="16px" height="16px" style="position: absolute;top: 5px;right: 5px; z-index: 1;"
+                                @click="selectOne(index)">
+                        </div>
+                    </div>
+                    <div id="workspace-footer">
+                        <div v-if="!operation">
+                            <button class="footer_button" style="margin-right: 65px; margin-top: 10px" @click="returnDesignTasks">返回</button>
+                            <button class="footer_button" id="oneMore"  style="margin-right: 50px;" :style="{'color': designPhotosCount === 12 ? '#979797':'#D6D6D6'}" @click="moreTaskPics(designTasks[currentTaskIndex], currentTaskIndex)">再来一批</button>
+                            <button class="footer_button" @click='batchOperation'>批量操作</button>
+                        </div>
+                        <div v-if="operation">
+                            <div id="select-all" class="select_all">
+                                <img :src="(selectedPhotoIds.length==photos.length) ? '../STATIC/IMG/icons/choose.png' : '../STATIC/IMG/icons/unchoose.png'"
+                                    width="15px" height="15px" style="position: relative; top:2px; right: 2px;" @click="selecteAll">全选
+                            </div>
+                            <button class="footer_button" :style="{'color':selectedPhotoIds.length ? '#D6D6D6':'#979797'}" @click="batchDeletePhoto">删除</button>
+                            <button class="footer_button" :style="{'color':selectedPhotoIds.length ? '#D6D6D6':'#979797'}" @click="batchHidePhoto">隐藏</button>
+                            <button class="footer_button" :style="{'color':selectedPhotoIds.length ? '#D6D6D6':'#979797'}" @click="batchSetPhotoCompleted">免修</button>
+                            <button class="footer_button" :style="{'color':selectedPhotoIds.length ? '#D6D6D6':'#979797'}" @click="batchDownloadPhotos">导入至Ps</button>
+                            <button class="footer_button" @click="returnBack">取消</button>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if='bigImage' class="current-photo">
+                    <div v-if="designPhotosCount > 0">
+                        <div class="photos-return">
+                            <!--<img src="../STATIC/IMG/icons/return.png" @click="returnDesignTasks" />-->
+                            <span v-if="currentPhoto" style="vertical-align: top;color:rgba(255,255,255,1);line-height:20px;font-size: 14px; margin-left: 125px; text-shadow:0px 0px 6px rgba(0,0,0,0.8)">{{currentPhotoIndex+1}}/{{photos.length}}</span>
+                        </div>
+                        <div v-if="currentPhoto" style="position: absolute;top: 0">
+                            <div class="photo-large" style="box-sizing: border-box; padding: 44px 0; width: 100%; height: 100%; position: fixed;top: 50%;transform: translateY(-50%);">
+                                <img :src="currentPhoto.url_large" style="box-sizing: border-box; padding: 44px 0; width: 100%; height: 100%; object-fit: contain; position: absolute; top: 50%; width: 100%; transform: translateY(-50%)" />
+                                <div id="current-forward" class="current-change-index" @click="preBigPhoto()">
+                                    <img src="https://common.xxpie.com/ps:ic_workbench_left.png" style="width: 30px"/>
+                                </div>
+                                <div id="current-next" class="current-change-index" @click="nextBigPhoto()">
+                                    <img src="https://common.xxpie.com/ps:ic_workbench_right.png" style="width: 30px"/>
+                                </div>
+                            </div>
+                            <div id="tasklist-footer" style="display: flex;height:44px;background:rgba(83,83,83,1);border-top:1px solid #424242;position: fixed;bottom: 0;width: 99%">
+                                <button id="go_back" class="footer_button2" @click="goBack">返回</button>
+                                <button id="deleted-photo" class="footer_button2" @click="showDeletetips(currentPhoto, currentPhotoIndex)">删除</button>
+                                <button id="hided-photo" class="footer_button2" @click="hidePhotoTips(currentPhoto, currentPhotoIndex)">隐藏</button>
+                                <button id="skip-photo" class="footer_button2" @click="setPhotoCompletedTips(currentPhoto, currentPhotoIndex)">免修</button>
+                                <button id="open-photo" class="footer_button2" style="color:rgba(255,102,20,1);width: 30%" @click="openInPS(currentPhoto, currentPhotoIndex)">{{currentPhoto.path ? '保存到云端' : '导入至Ps'}}</button>
+                            </div>
+                        </div>
+                        <div v-if="photos.length == 0" class="designer-task-done">
+                            <span class="desinger-task-tips">本批图片已修完</span>
+                            <button class="more-return" @click="moreTaskPics(designTasks[currentTaskIndex], currentTaskIndex)">再来一批</button>
+                        </div>
+                    </div>
+                    <div v-if="designPhotosCount === 0" class="designer-task-done">
+                        <span class="desinger-task-tips">工作台空空如也，快去相册列表添加吧！</span>
+                        <!--<button class="more-return" @click="loadDesignTasks(1)">返回</button>-->
+                    </div>
+                </div>
+            </div>
+            <!--已处理相册-->
+            <div id="photos-done" v-else-if="currentTab === 3 && !isLoading">
+                <!--相册列表-->
+                <div v-if="processed.isShowAlbums" style="padding:0px 8px;">
+                    <div class="task-done-photo" v-for="(task, index) in processed.albums" @click="loadProcessedAlbumPhotos(task)">
+                        <div class="album-cover"><img :src='task.cover_photo_url'></div>
+                        <div class='album-info'>
+                            <div class="name">{{task.task_name}}</div>
+                            <div class="photo-count">{{task.photo_done_count}}张</div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    <!--相册照片列表-->
+                    <div v-if='processed.isShowPhotos' class='processed-album-photos'>
+                        <div class="album-name">{{(processed.currentAlbum||{}).task_name}}({{(processed.currentAlbum||{}).photo_done_count}})</div>
+                        <div class="photos">
+                            <img :src="photo.url_thumbnail" v-for="(photo,index) in processed.photos" @click="showProcessedAlbumLargePhoto(index,photo)">
+                        </div>
+                    </div>
+                    <!--相册照片大图-->
+                    <div v-else class="processed-album-large-photo">
+                        <div class="photo-index">{{processed.currentPhotoIndex+1}}/{{processed.photos.length}}</div>
+                        <div class="photo-area">
+                            <img src="https://common.xxpie.com/ps:ic_workbench_left.png" class="icon-left" @click="preProcessedAlbumLargePhoto">
+                            <img :src='processed.currentPhoto.url_large' style="width:100%; box-sizing: border-box; object-fit: contain; height: 100%; padding: 44px 0;">
+                            <img src="https://common.xxpie.com/ps:ic_workbench_right.png" class="icon-right" @click="nextProcessedAlbumLargePhoto">
+                        </div>
+                    </div>
+                    <div id="photolist-footer">
+                        <button class="btn-back" @click="processAlbumBack()">返回</button>
+                        <button class="btn-save" v-if='!processed.isShowPhotos' @click="processedAlbumReworkOrSaveToCloud()">{{processed.isOpenOriginPhoto?'保存到云端':'重修'}}</button>
+                    </div>
+                </div>
+            </div>
+            <div id="more" v-else-if="currentTab === 4 && !isLoading">
+                <div v-if="!updating" style="z-index: 0">
+                    <div id="noNewVersion" @click="hideUpdatePsTips" v-if="isShowUpdatePsTips">
+                        <img src="../STATIC/IMG/icons/slice.png" /> 您的插件已经是最新版本了
+                    </div>
+                    <div v-if="hasUpdate" style="position: fixed; top: 103px; left: 86px">
+                        <div style="font-size: 16px; color:#F3F3F3; padding-bottom: 8px">发现新版本V{{versionInfo.version_name}}</div>
+                    </div>
+                    <div>
+                        <button id="checkUpdate" class="more-btn" @click="checkUpdate" v-if="!hasUpdate">检查版本更新</button>
+                        <button id="updateNow" class="more-btn" @click="updateNow" v-if="hasUpdate">立即更新</button>
+                    </div>
+                    <div>
+                        <button class="more-btn" @click="getHelp">使用帮助</button>
+                    </div>
+                    <div>
+                        <button class="more-btn" @click="aboutUs">关于享像派</button>
+                    </div>
+                    <div>
+                        <button class="more-btn" @click="logout">退出登录</button>
+                    </div>
+                </div>
+                <div v-if="updating">
+                    <div class="update-container">
+                        <div class="tips">更新操作提示</div>
+                        <div class="update-content">下载新版Ps插件并解压，手动删除旧版插件文件夹，复制新版插件到该目录下，具体操作方法请参考安装包中的“README.txt”文件</div>
+                        <button class='btns' @click="closeDialog">我知道了</button>
+                    </div>
+                </div>
+                <p id="version">版本号: V{{currentVersionName}}</p>
+            </div>
+            <div v-if="uploadFailed">
+
+            </div>
+            <div v-if="!isLoading">
+                <!--<img src="../STATIC/IMG/icons/ic_work_loading.png" style="width: 36px">-->
+                <!--<div style="font-size:12px;font-family:PingFangSC-Regular;font-weight:400;color:rgba(151,151,151,1);line-height:17px;">玩命加载中...</div>-->
+            </div>
+
+        </div>
+        <div class="morePhotosBox" v-if="morePhotos">
+            <p class="tips-title">提示</p>
+            <p class="tips-text">此相册暂无新照片，请稍后重试！</p>
+            <button class="iKnow-btn" @click="hideMorePhotoBox">我知道了</button>
+        </div>
+        <div id="loader-container" v-if="isLoading">
+            <div id="loader" v-if="isLoading">
+                <img src="../STATIC/IMG/icons/ic_work_loading.png" style="width: 36px; margin-top: 50%">
+                <div style="font-size:12px;font-family:PingFangSC-Regular;font-weight:400;color:rgba(151,151,151,1);line-height:17px;margin-top: 8px;">玩命加载中</div>
+            </div>
+        </div>
+        <div id="loader-container" v-if="isBatchDownloading">
+            <div id="loader" v-if="isBatchDownloading">
+                <img src="../STATIC/IMG/icons/ic_work_loading.png" style="width: 36px; margin-top: 60%">
+                <div style="font-size:12px;font-family:PingFangSC-Regular;font-weight:400;color:rgba(151,151,151,1);line-height:17px;margin-top: 8px;">玩命加载中</div>
+            </div>
+        </div>
+        <div id="dialog">
+            <div class="box">
+                <div class="title"></div>
+                <div class="content"></div>
+                <div class="no-longer-prompt">
+                    <img src='https://common.xxpie.com/ps:ic_bounced_unselect.png' id="icon-no-longer-prompt"><span>不再提示</span>
+                </div>
+                <div class="btn-group">
+                    <button class="btn-cancel"></button>
+                    <button class="btn-confirm"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="script-box">
+        <script type="text/javascript" src="../JS/CSInterface.js"></script>
+        <script type="text/javascript" src="../JS/axios.js"></script>
+        <script type="text/javascript" src="../JS/main.js"></script>
+        <script type="text/javascript" src="../JS/lodash.js"></script>
+    </div>
+</body>
+
+</html>

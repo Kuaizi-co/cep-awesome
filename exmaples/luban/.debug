@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+    <Extension Id="com.taobao.luban.ps-plugin-public">
+        <HostList>
+            <Host Name="PHSP" Port="8700"/>
+            <Host Name="PHXS" Port="8701"/>
+        </HostList>
+    </Extension>
+</ExtensionList>

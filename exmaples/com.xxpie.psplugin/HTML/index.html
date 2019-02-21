@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+    <title>享像派</title>
+    <link type="text/css" href="../CSS/index.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../JS/vue.js"></script>
+    <script type="text/javascript" src="../JS/CSInterface.js"></script>
+</head>
+<body spellcheck="false">
+
+<div>
+    <div id="root">
+        <img id="logo" src="../STATIC/IMG/icons/logo.png"/><br>
+        <div>
+            <input id="phone" type="text" v-model="phone" class="input" placeholder="请输入手机号码" type="number"/>
+        </div>
+        <div id="vcode-container">
+            <input id="vcode" type="text" v-model="vcode" class="input" placeholder="请输入验证码" type="number"/>
+            <div id="divider"></div>
+            <button id="getVcode" @click="getVCode">{{timeout}}</button>
+        </div>
+        <div>
+            <button id="login" @click="login" v-bind:style="(phone&&vcode) ? 'background: #FF6614' : 'background: #979797'">{{signIn}}</button>
+        </div>
+        <div v-if="!is_used">
+            <div class="dialog-container">
+                <div class="tips">版本更新啦！</div>
+                <div class="content">{{versionInfo.remarks}}</div>
+                <button class='btns' @click="updateNow">立即更新</button>
+            </div>
+        </div>
+        <div>
+            <div id = "signInFail" style="margin-left: 80px; width: 100px;margin-top: 40px; background-color: rgb(103, 103, 103); color: rgb(255, 255, 255); border-radius: 5px; padding: 8px;opacity: 0;">{{errMsg}}</div>
+        </div>
+    </div>
+</div>
+
+<div id="script-box">
+    <script type="text/javascript" src="../JS/CSInterface.js"></script>
+    <script type="text/javascript" src="../JS/axios.js"></script>
+    <script type="text/javascript" src="../JS/start.js"></script>
+</div>
+</body>
+</html>

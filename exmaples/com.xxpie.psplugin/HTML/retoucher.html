@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修图师登录</title>
+</head>
+<body>
+<div id="root">
+    <div class="form-group">
+        <label for="phone">手机号码：</label>
+        <input id="phone" class="form-control" v-model="phone_number" placeholder="请输入手机号码"/>
+    </div>
+    <div class="form-group">
+        <label for="code">验证码：</label>
+        <input id="code" class="form-control" v-model="password" placeholder="请输入密码">
+        <!--<button class="btn-secondary" v-on:click="getVCode">获取验证码</button>-->
+    </div>
+    <button class="btn-primary" @click="login">登录</button>
+</div>
+
+<div id="script-box">
+    <script type="text/javascript" src="../JS/vue.js"></script>
+    <script type="text/javascript" src="../JS/axios.js"></script>
+    <script type="text/javascript" src="../JS/retoucher.js"></script>
+</div>
+</body>
+</html>

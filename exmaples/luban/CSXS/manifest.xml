@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="com.taobao.luban.ps-plugin-public" ExtensionBundleVersion="1.0" Version="6.0"> <!-- MAJOR-VERSION-UPDATE-MARKER -->
+    <ExtensionList>
+        <Extension Id="com.taobao.luban.ps-plugin-public" Version="6.1.0"/> <!-- 设置扩展 ID-->
+    </ExtensionList>
+
+    <ExecutionEnvironment>
+        <HostList> 
+            <Host Name="PHSP" Version="16.0"/>
+            <Host Name="PHXS" Version="16.0"/>
+        </HostList>
+
+        <LocaleList>
+            <Locale Code="All"/>
+        </LocaleList>
+
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="6.0"/>
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <Extension Id="com.taobao.luban.ps-plugin-public"> <!-- 为 new_panel 设置属性-->
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./src/markTool.html</MainPath> <!-- 指定起始载入的网页-->
+                    <ScriptPath>./jsx/main1.jsx</ScriptPath> <!-- 指定用到的 JSX 文件-->
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible> <!-- 设置扩展面板为可视-->
+                    <StartOn>
+                    </StartOn>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type> <!-- 设置扩展显示为面板模式-->
+                    <Menu>鹿班商业版</Menu> <!-- 设置扩展标题-->
+                    <Geometry>
+                        <Size>  <!-- 设置扩展面板尺寸-->
+                            <Height>400</Height>
+                            <Width>250</Width>
+                        </Size>
+                    </Geometry>
+                    <Icons>  <!-- 设置扩展面板图标-->
+                        <Icon Type="Normal">./img/light.png</Icon>
+                        <Icon Type="DarkNormal">./img/dark.png</Icon>
+                    </Icons>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>

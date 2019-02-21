@@ -1,0 +1,163 @@
+html {
+    font-size: 6px;
+}
+
+body {
+    background-color: #535353;
+}
+
+#root{
+    text-align: center;
+    display: block;
+}
+
+#logo {
+    margin-top: 72px;
+    text-align: center;
+    width: 42px;
+    height: 42px;
+}
+
+.input {
+    background: transparent;
+    font-size: 14px;
+    color: white;
+    outline: none;
+    border: 0;
+    border-bottom: 1px #888888 solid;
+}
+.input:focus {
+    border-bottom: 1px #dadada solid;
+}
+
+#phone {
+    margin-top: 48px;
+    text-align: left;
+    width: 234px;
+    height: 36px;
+}
+
+#vcode-container {
+    width: 234px;
+    height: 38px;
+    margin-top: 18px;
+    border: 0;
+    border-bottom: 1px #888888 solid;
+    display: inline-block;
+    position: relative;
+}
+
+#vcode {
+    width: 234px;
+    height: 36px;
+    border: 0;
+    /* text-align: center; */
+    margin-bottom: 1px;
+    outline: none;
+}
+#vcode:focus {
+    border-bottom: 1px #dadada solid;
+}
+
+#getVcode {
+    width: 80px;
+    height: 36px;
+    text-align: center;
+    background: #535353;
+    border: 0;
+    outline: none;
+    color: #ffffff;
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+
+#getVcode:hover {
+    background: #424242;
+}
+
+#divider {
+    width: 1px;
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 146px;
+    margin-bottom: 11px;
+    background: #979797;
+}
+
+#login {
+    background: #979797;
+    margin-top: 56px;
+    border-radius: 4rem;
+    border: 0;
+    color: #ffffff;
+    font-size: 14px;
+    width: 240px;
+    height: 42px;
+    outline: none;
+}
+
+#login:active {
+    position:relative;
+    top:2px;
+}
+
+.dialog-container{
+    position:  fixed;
+    top: 90px;
+    width: 284px;
+    height: 265px;
+    background: #676767;
+    border-radius: 4px;
+    box-shadow: 0px 8px 5px 0px #333333;
+    /* margin-left: 8px; */
+}
+
+.tips{
+    font-size: 18px;
+    color: #D6D6D6;
+    width: 100%;
+    padding-top: 32px;
+    text-align: center
+}
+
+.content{
+    margin-left: 24px;
+    width:  236px;
+    font-size: 14px;
+    color: #D6D6D6;
+    margin-top: 16px;
+    text-align: left;
+    font-weight: 400;
+    font-family: PingFangSC-Regular;
+    line-height: 20px;
+}
+
+.btns{
+    font-size: 14px;
+    width: 236px;
+    height: 40px;
+    color: #ffffff;
+    border: none;
+    margin-top: 40px;
+    /* margin-left: 24px; */
+    border-radius: 24px;
+    background: #FF6614;
+}
+
+.fail_msg{
+    margin-left: 80px;
+    width: 100px;
+    margin-top: 40px;
+    background-color: rgb(103, 103, 103);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 8px;
+    opacity: 1;
+    /* transition: opacity 3s; */
+}
+
+/* .fail_msg:hover{
+    opacity: 0
+} */

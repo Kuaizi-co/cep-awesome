@@ -1,0 +1,1 @@
+(function(){var n=new Vue({el:"#root",methods:{login:function(){window.location.replace("./index.html")}}})})();
