@@ -1,6 +1,6 @@
 # cep-awesome
 
-* [鹿班-阿里云](./example/luban)
+* [鹿班-阿里云](./examples/luban)
 * [享象派](./examples/com.xxpie.psplugin)
 * [UI-DNA](https://github.com/nullice/UI-DNA)
 
