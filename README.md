@@ -3,6 +3,7 @@
 * [鹿班-阿里云](./examples/luban)
 * [享象派](./examples/com.xxpie.psplugin)
 * [UI-DNA](https://github.com/nullice/UI-DNA)
+* [Adobe CEP Plugin for Pexels Photos.](https://github.com/kluman/pexels)
 
 # LICENSE
 
