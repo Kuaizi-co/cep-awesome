@@ -10,6 +10,18 @@
 * [https://github.com/HendrixString/adobe-cep-react-create](https://github.com/HendrixString/adobe-cep-react-create)
 * [https://github.com/romashamin/Size-Marks-PS/blob/master/src/Size-Marks.jsx](https://github.com/romashamin/Size-Marks-PS/blob/master/src/Size-Marks.jsx)
 * [https://github.com/Paul-Riggott/PS-Scripts](https://github.com/Paul-Riggott/PS-Scripts)
+* [https://github.com/kynd/photoshopScripts](https://github.com/kynd/photoshopScripts)
+* [https://github.com/LeZuse/photoshop-scripts](https://github.com/LeZuse/photoshop-scripts)
+* [https://github.com/cbuliarca/BCM_exetndShortcutsUI](https://github.com/cbuliarca/BCM_exetndShortcutsUI)
+* [https://github.com/nvkzNemo/experimental-ps-scripts](https://github.com/nvkzNemo/experimental-ps-scripts)
+* [https://github.com/ES-Collection/Photoshop-Scripts](https://github.com/ES-Collection/Photoshop-Scripts)
+* [https://github.com/julysohu/photoshop_deep_cleaner](https://github.com/julysohu/photoshop_deep_cleaner)
+* [https://github.com/davidderaedt/CSscripts](https://github.com/davidderaedt/CSscripts)
+* [https://github.com/Pomax/photoshop-paths-to-SVG](https://github.com/Pomax/photoshop-paths-to-SVG)
+* [https://github.com/thommeo/Expand-SmartObject](https://github.com/thommeo/Expand-SmartObject)
+* [https://github.com/kieranblack/Photoshop-Scripts](https://github.com/kieranblack/Photoshop-Scripts)
+* [https://github.com/hilukasz/PS-scripts](https://github.com/hilukasz/PS-scripts)
+* [https://github.com/emptykid/photoshop-script-api](https://github.com/emptykid/photoshop-script-api)
 
 ### 教程
 
