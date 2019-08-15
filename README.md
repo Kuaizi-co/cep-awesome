@@ -22,6 +22,25 @@
 * [https://github.com/kieranblack/Photoshop-Scripts](https://github.com/kieranblack/Photoshop-Scripts)
 * [https://github.com/hilukasz/PS-scripts](https://github.com/hilukasz/PS-scripts)
 * [https://github.com/emptykid/photoshop-script-api](https://github.com/emptykid/photoshop-script-api)
+* [https://github.com/knockknock-jp/psdexporter-jsx](https://github.com/knockknock-jp/psdexporter-jsx)
+* [https://github.com/moremorefor/PSD2Flinto](https://github.com/moremorefor/PSD2Flinto)
+* [https://github.com/tomkrcha/photoshop-scripts](https://github.com/tomkrcha/photoshop-scripts)
+* [https://github.com/fierayan/PNG-2x-Export](https://github.com/fierayan/PNG-2x-Export)
+* [https://github.com/Linrstudio/QRCode-for-photoshop](https://github.com/Linrstudio/QRCode-for-photoshop)
+* [https://github.com/fzhlee/Photoshop-Ps-](https://github.com/fzhlee/Photoshop-Ps-)
+* [https://github.com/MrFlox/psd-hopa-layer-export](https://github.com/MrFlox/psd-hopa-layer-export)
+* [https://github.com/golmakov/grexport](https://github.com/golmakov/grexport)
+* [https://github.com/misolori/psd2css](https://github.com/misolori/psd2css)
+* [https://github.com/cannap/ps-button-padding](https://github.com/cannap/ps-button-padding)
+* [https://github.com/infu/pquery](https://github.com/infu/pquery)
+* [https://github.com/rtauler/replace-shape-color](https://github.com/rtauler/replace-shape-color)
+* [https://github.com/dustymethod/improved-slider](https://github.com/dustymethod/improved-slider)
+* [https://github.com/1057376155/corguide](https://github.com/1057376155/corguide)
+* [https://github.com/thommeo/Linker](https://github.com/thommeo/Linker)
+* [https://github.com/mattirwin/Adobe-Scripts](https://github.com/mattirwin/Adobe-Scripts)
+* [https://github.com/mitmedialab/storybook-photoshop-jsx](https://github.com/mitmedialab/storybook-photoshop-jsx)
+* [https://github.com/Jeanhwea/psscript](https://github.com/Jeanhwea/psscript)
+
 
 ### 教程
 
