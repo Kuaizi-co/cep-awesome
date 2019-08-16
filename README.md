@@ -8,6 +8,7 @@
 * [Adobe CEP Plugin for Pexels Photos.](https://github.com/kluman/pexels)
 * [【设计助理】让你早一小时下班的ps插件 电商必备 ps神器](https://www.ui.cn/detail/407881.html)
 * [Cutterman](http://www.cutterman.cn/zh)
+* [蓝湖](https://lanhuapp.com/ps?comeFrom=%E5%AE%98%E7%BD%91%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA)
 * [https://github.com/HendrixString/adobe-cep-react-create](https://github.com/HendrixString/adobe-cep-react-create)
 * [https://github.com/romashamin/Size-Marks-PS/blob/master/src/Size-Marks.jsx](https://github.com/romashamin/Size-Marks-PS/blob/master/src/Size-Marks.jsx)
 * [https://github.com/Paul-Riggott/PS-Scripts](https://github.com/Paul-Riggott/PS-Scripts)
