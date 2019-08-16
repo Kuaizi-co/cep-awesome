@@ -1,0 +1,88 @@
+
+
+@mixin list_main($t) {
+    .#{$t} {
+        $color: map-get($theme, $t);
+        .list {
+            font-size: 12px;
+            overflow-y: scroll;
+            height: 560px;
+
+            /*
+            .recommand {
+                height: 100px;
+                line-height: 100px;
+                text-align: center;
+                background: $color-info;
+            }
+            */
+
+            .items {
+                li {
+                    position: relative;
+                    border-bottom: 1px solid map-get($color, "header_border");
+                    padding-bottom: 10px;
+                    margin-top: 15px;
+                    padding-left: 20px;
+                    overflow: hidden;
+                }
+
+                img {
+                    float: left;
+                }
+
+                .content {
+                    margin-left: 130px;
+                }
+
+                h3 {
+                    font-size: 20px;
+                }
+
+                p {
+                    margin-top: 6px;
+                    margin-bottom: 10px;
+                    margin-right: 100px;
+                    color: map-get($color, 'text-gray');
+                }
+                .info {
+                    color: map-get($color, 'text-gray');
+                    span {
+                        margin-right: 20px;
+                    }
+                }
+                .action {
+                    position: absolute;
+                    right: 10px;
+                    top: 20px;
+                    font-size: 12px;
+                    text-align: center;
+
+                    button {
+                        width: 80px;
+                        font-size: 12px;
+                    }
+
+                    a {
+                        color: $color-primary;
+                        text-decoration: underline;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+
+                    a.uninstall {
+                        color: $color-danger;
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+@include list_main('gray');
+@include list_main('white');
+@include list_main('dark');
+@include list_main('black');

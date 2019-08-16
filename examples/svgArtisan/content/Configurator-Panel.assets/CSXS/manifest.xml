@@ -1,0 +1,39 @@
+<ExtensionManifest Version="3.0" ExtensionBundleId="svg" ExtensionBundleVersion="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ExtensionList>
+		<Extension Id="svg" Version="1.0" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="3.0" />
+		</RequiredRuntimeList>
+		<HostList>
+			<Host Name="PHXS" Version="[13.0,13.9]"/>
+      		<Host Name="PHSP" Version="[13.0,13.9]"/>
+		</HostList>
+	</ExecutionEnvironment>
+	<DispatchInfoList> 
+		<Extension Id="svg">
+			<DispatchInfo >
+				<Resources>
+					<MainPath>./svg.assets/index.html</MainPath>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>wink</Menu>
+					<Geometry>
+						<Size>
+							<Height>800</Height>
+							<Width>400</Width>
+						</Size>
+					</Geometry>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>

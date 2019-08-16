@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cutterman</title>
+        <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="./css/app.css" />
+        <!--        <script src="./js/vendor/CSInterface-mock.js" type="text/javascript"></script> -->
+        <script src="./js/vendor/CSInterface-6.1.0.js" type="text/javascript"></script>
+        <script src="./js/vendor/jquery.js" type="text/javascript"></script>
+        <script src="./js/vendor/lodash.min.js" type="text/javascript"></script>
+        <script src="./js/vendor/bootstrap.min.js" type="text/javascript"></script>
+        <script src="./js/vendor/bluebird.min.js" type="text/javascript"></script>
+        <script src="./js/vendor/vue.js" type="text/javascript"></script>
+        <script src="./js/vendor/lodash.js" type="text/javascript"></script>
+    </head>
+    <body class="gray">
+        <div class="wrapper" id="wrapper">
+            <login v-if="panel == 0" @onlogin="onLogin"></login>
+            <panel v-if="panel == 1" :user="user" @onsetting="onSetting" @onuser="onUser"></panel>
+            <setting v-if="panel == 2" @onpanel="onPanel"></setting>
+            <user v-if="panel == 3" @onpanel="onPanel" @onlogout="onLogout"></user>
+            <div style="display: none;" class="toast" id="toast"><span></span></div>
+        </div>
+
+        <template id="login">
+            <div class="login"><i class="avatar"></i>
+                <p>请登录您的账号</p>
+                <form class="text-center" role="form" name="form" @submit.prevent="onSubmit()">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="mail" id="mail" placeholder="邮箱" v-model="email"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" id="password" placeholder="密码" v-model="password"/>
+                    </div>
+                    <div class="form-group-last">
+                        <button type="submit">登 录</button>
+                    </div>
+                </form>
+                <p class="register"><a class="link" @click.prevent="register()" href="#">没有账号，去注册</a></p>
+            </div>
+        </template>
+
+        <template id="panel">
+            <div class="panel">
+                <div class="header">
+                    <!-- <a class="back-icon" href="#"><i class="fa fa-arrow-left"></i></a> -->
+                    <a class="user-icon" href="#" @click.prevent="goUser()"></a>
+                    <a class="setting-icon" href="#" @click.prevent="goSetting()"></a>
+                    <span class="logo">Cutterman</span>
+                </div>
+                <div class="update-content" v-if="updateInfo.update == 1">
+                    <h4>发现新版本: {{ updateInfo.version_name }}</h4>
+                    <h5>更新日志：</h5>
+                    <ul>
+                        <li v-for="item in updateInfo.update_list"> - {{ item }}</li>
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div> <a class="download" href="#" @click.prevent="downloadUpdate()">点击下载</a> 
+                        <a href="#" @click.prevent="updateInfo.update = 0"> 下次再说 </a></div>
+                </div>
+                <div class="panel-content" v-if="updateInfo.update == 0">
+                    <div class="export-btn">
+                        <button class="export" @click="action()">
+                            <span v-if="!showAppIcon">导出选中图层</span>
+                            <span v-if="showAppIcon">导出图标</span>
+                            <span class="icon"></span>
+                        </button>
+                    </div>
+                    <div class="merge-layer" v-if="!showAppIcon"><a class="checkbox" href="#" @click.prevent="toggleMerge()" :class="{'checked': param.merge}"></a><span @click="toggleMerge()" class="text">合并导出选中的图层</span> </div>
+                    <div class="hr" v-if="!showAppIcon"></div>
+                    <div class="app-icon-mode" v-if="showAppIcon">
+                        <p>提示: 当前是App图标切图模式, 自动切出App启动图标各尺寸。可以在设置里头重新回到正常切图模式。</p>
+                        <p>
+                            使用方法：<br/>
+                            1. 保证文档的宽和高一致（如1024x1024）</br>
+                            2. 点击导出按钮
+                        </p>
+                    </div>
+
+                    <div class="xxx" v-if="!showAppIcon">
+                    <div class="platform">
+                        <ul>
+                            <li :class="{'active': param.ios.active}">
+                                <a class="target" href="#" @click.prevent="selectTarget('ios')">iOS</a>
+                                <a class="fa" :class="{'fa-caret-down': target == 'ios', 'fa-caret-up': target != 'ios'}" href="#" @click.prevent="toggleDPI('ios')"></a>
+                            </li>
+                            <li :class="{'active': param.android.active}">
+                                <a class="target" href="#" @click.prevent="selectTarget('android')">Android</a>
+                                <a class="fa" :class="{'fa-caret-down': target == 'android', 'fa-caret-up': target != 'android'}" href="#" @click.prevent="toggleDPI('android')"></a>
+                            </li>
+                            <li :class="{'active': param.web.active}">
+                                <a class="target" href="#" @click.prevent="selectTarget('web')">Web</a>
+                                <a class="fa" :class="{'fa-caret-down': target == 'web', 'fa-caret-up': target != 'web'}" href="#" @click.prevent="toggleDPI('web')"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="export-dpi" v-show="target == 'ios'">
+                        <div>
+                            <button :class="{'active':param.ios.dpi['@3X']}" @click="selectDPI('ios', '@3X')">@3X</button>
+                            <button :class="{'active':param.ios.dpi['@2X']}" @click="selectDPI('ios', '@2X')">@2X</button>
+                            <button :class="{'active':param.ios.dpi['@1X']}" @click="selectDPI('ios', '@1X')">@1X</button>
+                            <button :class="{'active':param.ios.dpi['PDF']}" @click="selectDPI('ios', 'PDF')">PDF</button>
+                        </div>
+                    </div>
+                    <div class="export-dpi" v-show="target == 'android'">
+                        <div>
+                            <button :class="{'active': param.android.dpi.XXXHDPI}" @click="selectDPI('android', 'XXXHDPI')">XXXHDPI</button>
+                            <button :class="{'active': param.android.dpi.XXHDPI}" @click="selectDPI('android', 'XXHDPI')">XXHDPI</button>
+                            <button :class="{'active': param.android.dpi.XHDPI}" @click="selectDPI('android', 'XHDPI')">XHDPI</button>
+                            <button :class="{'active': param.android.dpi.HDPI}" @click="selectDPI('android', 'HDPI')">HDPI</button>
+                            <button :class="{'active': param.android.dpi.MDPI}" @click="selectDPI('android', 'MDPI')">MDPI</button>
+                            <button :class="{'active': param.android.dpi.SVG}" @click="selectDPI('android', 'SVG')">SVG</button>
+                        </div>
+                    </div>
+                    <div class="export-dpi" v-show="target == 'web'">
+                        <div>
+                            <button :class="{'active': param.web.dpi.PNG24}" @click="selectDPI('web', 'PNG24')">PNG24</button>
+                            <button :class="{'active': param.web.dpi.PNG8}" @click="selectDPI('web', 'PNG8')">PNG8</button>
+                            <button :class="{'active': param.web.dpi.JPEG}" @click="selectDPI('web', 'JPEG')">JPEG</button>
+                            <button :class="{'active': param.web.dpi.GIF}" @click="selectDPI('web', 'GIF')">GIF</button>
+                        </div>
+                        <div class="jpeg-val" v-show="showJpegValue">
+                            <span>品质</span>
+                            <input type="text" v-model="param.web.jpegValue"/>
+                        </div>
+                        <div class="gif-val" v-show="showGifValue">
+                            <span>品质</span>
+                            <button :class="{'active': param.web.gifValue == 256}" @click="selectGifValue(256)">256</button>
+                            <button :class="{'active': param.web.gifValue == 128}" @click="selectGifValue(128)">128</button>
+                            <button :class="{'active': param.web.gifValue == 64}" @click="selectGifValue(64)">64</button>
+                            <button :class="{'active': param.web.gifValue == 32}" @click="selectGifValue(32)">32</button>
+                        </div>
+                    </div>
+                    <div class="fix-size">
+                        <span class="text">固定尺寸</span>
+                        <span class="dimension">
+                            <input type="text" v-model="param.width" name="width" placeholder="宽"/><span>X</span>
+                            <input type="text" v-model="param.height" name="height" placeholder="高"/>
+                            <button class="clear" v-if="showClearButton" @click="clearFixSize()">清空</button>
+                            <button class="clear" v-if="!showClearButton" @click="setMask()">遮罩</button>
+                        </span>
+                    </div>
+                    </div>
+
+                    <div class="export-location">
+                        <div class="hr"></div>
+                        <span class="text">输出</span>
+                        <span class="location-btns">
+                            <button @click="selectOutput()" class="location-btn">{{ getOutput(param.output) }}</button>
+                            <button @click="toggleHistoryOutput()" class="location-history fa fa-caret-up"></button>
+                        </span>
+                        <button @click="openOutput()" class="open-dir"><span></span></button>
+                    </div>
+                    <div class="history-path" v-show="showHistoryOutput">
+                        <ul>
+                            <li><a href="#">历史输出位置</a></li>
+                            <li v-for="(item, index) in param.historyOutputs">
+                                <a href="#" @click.prevent="selectHistoryOutput(index)">{{ getOutput(item) }}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </template>
+
+        <template id="setting">
+            <div class="setting">
+                <div class="header">
+                    <a class="back-icon" href="#" @click.prevent="back()"><i class="fa fa-arrow-left"></i></a>
+                    <span class="logo">设置</span>
+                </div>
+                <div class="ios-rate same-file">
+                    <span>设置当前画布为</span><a class="fa fa-question-circle" href="#" @click.prevent="help(10)"></a>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="dropdown-menu2">{{ showDPI(setting.currentDpi) }}<span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-menu2">
+                            <li><a href="#" @click.prevent="selectDPI('Auto')">Auto</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('XXXHDPI')">XXXHDPI</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('XXHDPI')">XXHDPI</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('XHDPI')">XHDPI</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('HDPI')">HDPI</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('MDPI')">MDPI</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('@3X')">@3X</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('@2X')">@2X</a></li>
+                            <li><a href="#" @click.prevent="selectDPI('@1X')">@1X</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="same-file"><span>相同文件名</span>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="dropdown-menu0">{{ setting.sameFile == 1? '覆盖':'重命名' }}<span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-menu0">
+                            <li><a href="#" @click.prevent="setting.sameFile = 1">覆盖</a></li>
+                            <li><a href="#" @click.prevent="setting.sameFile = 2">重命名</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ios-rate same-file"><span>IOS @3X尺寸</span><a class="fa fa-question-circle" href="#" @click.prevent="help(11)"></a>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="dropdown-menu1">{{ setting.iosRate }}<span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-menu1">
+                            <li><a href="#" @click.prevent="setting.iosRate = 1125">1125</a></li>
+                            <li><a href="#" @click.prevent="setting.iosRate = 1242">1242</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hr"></div>
+                <div class="auto-calculate same-file ios-rate">
+                    <a class="checkbox" :class="{'checked': setting.autoCalculate}" href="#" @click.prevent="setting.autoCalculate = !setting.autoCalculate"></a>
+                    <span>自动换算不同平台尺寸</span><a class="fa fa-question-circle" href="#" @click.prevent="help(12)"></a>
+                </div>
+                <div class="auto-calculate same-file ios-rate">
+                    <a class="checkbox" :class="{'checked': setting.isEven}" href="#" @click.prevent="setting.isEven = !setting.isEven"></a>
+                    <span>输出偶数尺寸</span>
+                </div>
+                <div class="auto-calculate same-file ios-rate">
+                    <a class="checkbox" :class="{'checked': setting.isMipmap}" href="#" @click.prevent="setting.isMipmap = !setting.isMipmap"></a>
+                    <span>输出mipmap</span>
+                </div>
+                <div class="auto-calculate same-file ios-rate">
+                    <a class="checkbox" :class="{'checked': setting.showClear}" href="#" @click.prevent="setting.showClear = !setting.showClear"></a>
+                    <span>显示清空按钮</span>
+                </div>
+                <div class="auto-calculate same-file ios-rate">
+                    <a class="checkbox" :class="{'checked': setting.isAppIcon}" href="#" @click.prevent="setting.isAppIcon = !setting.isAppIcon"></a><span>进入App Icon切图模式</span>
+                    <a class="fa fa-question-circle" href="#" @click.prevent="help(13)"></a></div>
+            </div>
+        </template>
+
+        <template id="user">
+            <div class="user">
+                <div class="header">
+                    <a class="back-icon" href="#" @click.prevent="back()"><i class="fa fa-arrow-left"></i></a>
+                    <span class="logo">账号信息</span>
+                </div>
+                <div class="inner">
+                    <div class="name">{{ user.email }}</div>
+                    <div class="version">当前版本 {{ version }}</div>
+                    <div class="hr"></div>
+                    <div><a href="#" @click.prevent="usage()">切图工具使用指南</a></div>
+                    <div><a href="#" @click.prevent="goweb()">访问官网</a></div>
+                    <div><a href="#" @click.prevent="showQrCode=true">感谢作者</a></div>
+                    <div class="qrcode" v-show="showQrCode">
+                        <img src="./images/qrcode.png"/><br/><br/>
+                        <span>用支付宝扫描二维码</span><br/>
+                        <span>请作者喝咖啡 :(</span><br/>
+                        <a class="fa fa-close" href="#" @click.prevent="showQrCode=false"></a></div>
+                    <button class="logout" @click="logout()">退出登录</button>
+                </div>
+            </div>
+
+        </template>
+
+        <script src="./js/main.js"></script>
+    </body>
+</html>

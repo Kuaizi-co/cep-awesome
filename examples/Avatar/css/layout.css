@@ -1,0 +1,38 @@
+/* vim: set et sw=4 ts=4 sts=4 fdm=marker ff=unix fenc=utf8 nobomb: */
+
+/**
+ * filename.css
+ *
+ * @author xiaoqiang
+ * @mail   qiang0902@126.com
+ * @date
+ */
+
+.preview {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.preview img {
+    border-radius: 64px;
+}
+
+.op {
+    width: 120px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 13px;
+    overflow: hidden;
+}
+.op a {
+    margin-left: 20px;
+}
+
+.generate {
+    clear: both;
+    width: 160px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 10px;
+}

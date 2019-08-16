@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="Avatar" ExtensionBundleVersion="1.0.1" Version="4.0">
+	<Author> xiaoqiang </Author>
+    <ExtensionList>
+        <Extension Id="Avatar" Version="1.0.1"/>
+    </ExtensionList>
+    <ExecutionEnvironment>
+        <HostList>
+            <Host Name="PHXS" Version="14.0" />
+            <Host Name="PHSP" Version="14.0" />
+        </HostList>
+        <LocaleList>
+            <Locale Code="All"/>
+        </LocaleList>
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="4.0"/>
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <Extension Id="Avatar">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./index.html</MainPath>
+                    <ScriptPath>./jsx/init.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-speech-input</Parameter>
+						<Parameter>--enable-media-stream</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Avatar</Menu>
+                    <Geometry>
+                        <Size>
+                            <Height>240</Height>
+                            <Width>200</Width>
+                        </Size>
+                    </Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./img/panel_icon_light.png</Icon>
+                        <Icon Type="RollOver">./img/panel_icon_light.png</Icon>
+                        <Icon Type="DarkNormal">./img/panel_icon_dark.png</Icon>
+                        <Icon Type="DarkRollOver">./img/panel_icon_dark.png</Icon>
+                    </Icons>					
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>

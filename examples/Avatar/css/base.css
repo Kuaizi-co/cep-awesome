@@ -1,0 +1,52 @@
+/* vim: set et sw=4 ts=4 sts=4 fdm=marker ff=unix fenc=utf8 nobomb: */
+
+/**
+ * filename.css
+ *
+ * @author xiaoqiang
+ * @mail   qiang0902@126.com
+ * @date
+ */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'HiraginoSansGB-W3', 'MicrosoftYaHei', Verdana;
+}
+html, body {
+    overflow: hidden;
+}
+
+/*------------------- theme ----------------*/
+body.theme-black,
+body.theme-black .info-panel
+{
+    background: #313230;
+    color: #ccc;
+}
+body.theme-dark,
+body.theme-dark .info-panel
+{
+    background: #4f514f;
+    color: #ccc;
+}
+body.theme-gray,
+body.theme-gray .info-panel
+{
+    background: #b8b8b7;
+    color: #000;
+}
+body.theme-white,
+body.theme-white .info-panel
+{
+    background: #d7d6d6;
+    color: #000;
+}
+
+
+
+/*------------------- theme ----------------*/
+ul, li, p, h1, h2, h3,h4 {
+    margin: 0;
+    padding: 0;
+}

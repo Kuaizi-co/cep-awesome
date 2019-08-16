@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Extension</title>
+	<meta charset="utf-8">
+	
+	<!-- CSS -->
+	<link id="ppstyle" rel="stylesheet" type="text/css" href="./style.css">
+
+	<!-- JS -->
+	<script src="./lib/jquery-1.9.1.js"></script>
+	<script src="./ext.js"></script>
+	<script src="./lib/CSInterface-4.0.0.js"></script>
+</head>
+<body onLoad="onLoaded()">
+	<div class="frame" id="content">
+		<div class="user">
+			<div class="photo">
+				<img src="">
+			</div>
+			<!-- <span class="greeting">Hello, my name is</span> -->
+			<span class="name" id="name">&nbsp;</span>
+		</div>
+		<ul class="controls">
+			<li><button class="control default add" disabled onClick="addImage()"></button></li>
+			<li><button class="control default mask" disabled onClick="insertAndClip()"></button></li>
+		</ul>
+		<!-- <ul class="size">
+			<li><button id="thumb" onClick="thumbButton()">Thumb</button></li>
+			<li><button id="medium" onClick="mediumButton()" class="active">Medium</button></li>
+			<li><button id="large" onClick="largeButton()">Large</button></li>
+		</ul> -->
+		<ul class="genders">
+			<li><button id="men" onClick="menButton()">Men</button></li>
+			<li><button id="both" onClick="bothButton()" class="active">Both</button></li>
+			<li><button id="women" onClick="womenButton()">Women</button></li>
+		</ul>
+		<span class="counter smalltext">0 users generated this session</span><br>
+		<button id="new-user" class="new-user" onClick="getAUser()"></button><br>
+		<a id="legoText" href="#" onClick="legoButton();">Lego Mode</a><br>
+		<a href="https://randomapi.com" target="_blank">Powered by RandomAPI</a>
+		<a href="https://randomuser.me" target="_blank" style="display: block; margin-top: 2px;">https://randomuser.me</a><br>
+		<span class="update smalltext" style="display: block; margin-top: -10px;"></span><br>
+	</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title> GoldenCurve </title>
+        <link rel="stylesheet" href="./css/base.css"/>
+        <link rel="stylesheet" href="./css/layout.css?xx"/>
+    </head>
+
+    <body class="white">
+    <div class="wrapper">
+
+        <div class="login-panel" id="login-panel" style="display: none;">
+            <img width="40" height="40" src="./img/avatar.png" alt="" style="margin-top: 15px"/>
+            <p>您必须登录才能使用</p>
+            <form id="login-form" action="/" method="get" accept-charset="utf-8">
+                <div><input type="text" name="email" class="input-small" placeholder="邮箱"/></div>
+                <div><input type="password" name="password" class="input-small" placeholder="密码"/></div>
+                <div class="login"><button type="submit" class="white">登  录</button></div>
+            </form>
+            <a id="register-btn" class="link" href="#">没有帐号，去注册</a>
+        </div>
+
+
+        <div class="main-panel" id="main-panel" style="">
+            <ul class="icons">
+                <li><a class="icons1" onclick="action('Rectangle1')" href="#"></a></li>
+                <li><a class="icons2" onclick="action('Rectangle2')" href="#"></a></li>
+                <li><a class="icons3" onclick="action('spiralSection1')" href="#"></a></li>
+                <li><a class="icons4" onclick="action('spiralSection2')" href="#"></a></li>
+                <li><a class="icons5" onclick="action('spiral1')" href="#"></a></li>
+                <li><a class="icons6" onclick="action('spiral2')" href="#"></a></li>
+                <li><a class="icons7" onclick="action('mean')" href="#"></a></li>
+                <li><a class="icons8" onclick="action('ruleOfThirds')" href="#"></a></li>
+                <li><a class="icons9" onclick="action('vShape2')" href="#"></a></li>
+                <li><a class="icons10" onclick="action('vShape1')" href="#"></a></li>
+                <li><a class="icons11" onclick="action('cross')" href="#"></a></li>
+                <li><a class="icons12" onclick="action('DiagonalCross')" href="#"></a></li>
+                <li><a class="icons13" onclick="action('triangle1')" href="#"></a></li>
+                <li><a class="icons14" onclick="action('triangle2')" href="#"></a></li>
+                <li><a class="icons15" onclick="action('triangleThirds1')" href="#"></a></li>
+                <li><a class="icons16" onclick="action('triangleThirds2')" href="#"></a></li>
+                <li><a class="icons17" onclick="action('HarmoniousTriangle2')" href="#"></a></li>
+                <li><a class="icons18" onclick="action('diagonal')" href="#"></a></li>
+            </ul>
+            <div class="user"><a id="email" href="#"></a><br/><a id="left"></a> </div>
+        </div>
+        <textarea name="jsx" id="jsx" style="display:none" rows="4" cols="10"></textarea>
+
+
+        <div style="display: none;" class="toast" id="toast"><span>这里是一些提示文字</span></div>
+
+        <div style="display: none;" class="cover" id="cover"></div>
+        <div id="dialog" class="dialog" style="display: none">
+            <h3>提示</h3>
+            <p>这里是一段提示文字这里这里是一段提示文字这里</p>
+            <div><button class="white">确定</button> </div>
+        </div>
+
+
+
+        <script src="./lib/CSInterface-4.0.0.js" type="text/javascript"></script>
+        <script src="./js/vendor/jquery.js" type="text/javascript"></script>
+
+        <script src="./js/base.js" type="text/javascript"></script>
+        <script src="./js/config.js" type="text/javascript"></script>
+        <script src="./js/cookie.js" type="text/javascript"></script>
+        <script src="./js/login.js" type="text/javascript"></script>
+        <script>
+            var instance = new App('goldencurve');
+                instance.init();
+            var config = new Config(instance);
+            var cookie = new Cookie(instance);
+            var user = new User(instance, config);
+                user.init();
+        </script>
+        <script src="./js/goldencurve.js" type="text/javascript"></script>
+
+    </div>
+    </body>
+</html>
+

@@ -1,0 +1,155 @@
+<div class="setting">
+    <div class="header">
+        <a href="javascript:;" ng-click="back()" class="back"><i class="glyphicon glyphicon-menu-left"></i></a>
+        <span ng-show="!colors">设置</span>
+        <span ng-show="colors">颜色管理</span>
+    </div>
+
+    <div class="block" ng-show="!colors">
+        <div class="row title">
+            <div>标注样式</div>
+        </div>
+        <div class="row mark-style">
+            <div class="col-xs-6">
+                <div class="input-group">
+                    <span class="input-group-addon">字号</span>
+                    <input type="text" class="form-control" placeholder="" ng-model="setting.mark.fontSize" />
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="input-group">
+                    <span class="input-group-addon">颜色</span>
+                    <input type="button" ng-click="changeColor('foreground')"  class="form-control color-btn" ng-style="setting.mark.foreground"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mark-style">
+            <div class="col-xs-6">
+                <div class="btn-group">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>标注样式</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" ng-click="saveSetting('style', 0)"><i ng-show="setting.mark.style == 0" class="glyphicon glyphicon-ok"></i>无样式</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('style', 1)"><i ng-show="setting.mark.style == 1" class="glyphicon glyphicon-ok"></i>文字描边</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('style', 2)"><i ng-show="setting.mark.style == 2" class="glyphicon glyphicon-ok"></i>文字背景</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="input-group" ng-show="setting.mark.style == 2">
+                    <span class="input-group-addon">颜色</span>
+                    <input type="button"  ng-click="changeColor('background')" class="form-control color-btn" ng-style="setting.mark.background"/>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="block" ng-show="!colors">
+        <div class="row title">
+            <div>标注单位</div>
+        </div>
+
+        <div class="row mark-style">
+            <div class="col-xs-6">
+                <div class="btn-group dropup">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        颜色格式 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" ng-click="saveSetting('colorType', 'ALL')"><i ng-show="setting.mark.colorType == 'ALL'" class="glyphicon glyphicon-ok"></i>RGB & HEX</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('colorType', 'HEX')"><i ng-show="setting.mark.colorType == 'HEX'" class="glyphicon glyphicon-ok"></i>HEX</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('colorType', 'RGB')"><i ng-show="setting.mark.colorType == 'RGB'" class="glyphicon glyphicon-ok"></i>RGB</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="btn-group dropup">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        显示单位 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" ng-click="saveSetting('showUnit', 1)"><i ng-show="setting.mark.showUnit == 1" class="glyphicon glyphicon-ok"></i>显示</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('showUnit', 0)"><i ng-show="setting.mark.showUnit == 0" class="glyphicon glyphicon-ok"></i>不显示</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mark-style">
+            <div class="col-xs-6">
+                <div class="btn-group dropup">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        尺寸单位 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="saveSetting('unit', 'PX')" href="javascript:;"><i ng-show="setting.mark.unit == 'PX'" class="glyphicon glyphicon-ok"></i>常规(PX)</a> </li>
+                        <li><a ng-click="saveSetting('unit', 'DP')" href="javascript:;"><i ng-show="setting.mark.unit == 'DP'" class="glyphicon glyphicon-ok"></i>安卓(DP)</a> </li>
+                        <li><a ng-click="saveSetting('unit', 'PT')" href="javascript:;"><i ng-show="setting.mark.unit == 'PT'" class="glyphicon glyphicon-ok"></i>IOS(PT)</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="btn-group dropup" ng-show="setting.mark.unit == 'DP'">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        分辨率 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', 'XXXHDPI')"><i ng-show="setting.mark.dpi == 'XXXHDPI'" class="glyphicon glyphicon-ok"></i>XXXHDPI</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', 'XXHDPI')"><i ng-show="setting.mark.dpi == 'XXHDPI'" class="glyphicon glyphicon-ok"></i>XXHDPI</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', 'XHDPI')"><i ng-show="setting.mark.dpi == 'XHDPI'" class="glyphicon glyphicon-ok"></i>XHDPI</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', 'HDPI')"><i ng-show="setting.mark.dpi == 'HDPI'" class="glyphicon glyphicon-ok"></i>HDPI</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', 'MDPI')"><i ng-show="setting.mark.dpi == 'MDPI'" class="glyphicon glyphicon-ok"></i>MDPI</a> </li>
+                    </ul>
+                </div>
+                <div class="btn-group dropup" ng-show="setting.mark.unit == 'PT'">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        分辨率 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', '3X')"><i ng-show="setting.mark.dpi == '3X'" class="glyphicon glyphicon-ok"></i>3X</a> </li>
+                        <li><a href="javascript:;" ng-click="saveSetting('dpi', '2X')"><i ng-show="setting.mark.dpi == '2X'" class="glyphicon glyphicon-ok"></i>2X</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mark-style">
+            <div class="col-xs-6">
+                <div class="btn-group dropup">
+                    <button class="btn confirm-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        链接标注图层 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="saveSetting('link', 1)" href="javascript:;"><i ng-show="setting.mark.link == 1" class="glyphicon glyphicon-ok"></i>链接</a> </li>
+                        <li><a ng-click="saveSetting('link', 0)" href="javascript:;"><i ng-show="setting.mark.link == 0" class="glyphicon glyphicon-ok"></i>不链接</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6"> </div>
+        </div>
+
+    </div>
+
+    <div class="block" ng-show="colors">
+        <div class="row title">
+            <div>点击对勾选择相应的颜色</div>
+        </div>
+
+        <div class="row colors" ng-repeat="color in setting.colorList">
+            <div class="col-xs-8"> <div style="background: {{color}};" class="color-bar" ng-bind="color"></div> </div>
+            <div class="col-xs-2"><a href="javascript:;" ng-click="selectColor(color)"> <i class="glyphicon glyphicon-ok"></i></a></div>
+            <div class="col-xs-2"><a href="javascript:;" ng-click="removeColor(color)"> <i class="glyphicon glyphicon-remove"></i></a></div>
+        </div>
+
+        <div class="row colors">
+            <div class="col-xs-8"> <input type="text" id="color-input" placeholder="#FF0000"> </div>
+            <div class="col-xs-4"> <button type="submit" ng-click="addColor()" class="btn confirm-btn">添加</button> </div>
+        </div>
+
+    </div>
+</div>

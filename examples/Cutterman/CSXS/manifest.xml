@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="5.0" ExtensionBundleId="com.cutterman.Cutterman" ExtensionBundleVersion="1.0.0" ExtensionBundleName="Cutterman" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ExtensionList>
+        <Extension Id="com.cutterman.Cutterman" Version="3.6.0"/>
+        <Extension Id="com.cutterman.PluginStore" Version="2.0.0"/>
+        <Extension Id="com.cutterman.PluginStoreInner" Version="1.0.0"/>
+    </ExtensionList>
+    <ExecutionEnvironment>
+        <HostList>
+            <!-- Photoshop CC2014.1  -  CC2017 -->
+            <Host Name="PHXS" Version="16"/>
+            <Host Name="PHSP" Version="16"/>
+        </HostList>
+        <LocaleList>
+            <Locale Code="All"/>
+        </LocaleList>
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="6.0"/>
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <Extension Id="com.cutterman.Cutterman">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./Panel/index.html</MainPath>
+                    <ScriptPath>./Panel/jsx/init.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Cutterman - 切图神器</Menu>
+                    <Geometry>
+                        <Size>
+                            <Width>230</Width>
+                            <Height>326</Height>
+                        </Size>
+                        <MinSize>
+                            <Width>230</Width>
+                            <Height>326</Height>
+                        </MinSize>
+                    </Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./Panel/images/panel_icon_light.png</Icon>
+                        <Icon Type="RollOver">./Panel/images/panel_icon_light.png</Icon>
+                        <Icon Type="DarkNormal">./Panel/images/panel_icon_dark.png</Icon>
+                        <Icon Type="DarkRollOver">./Panel/images/panel_icon_dark.png</Icon>
+                    </Icons>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+        <Extension Id="com.cutterman.PluginStore">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./Store/index.html</MainPath>
+                    <ScriptPath>./Store/jsx/init.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>插件应用商店</Menu>
+                    <Geometry>
+                        <Size>
+                            <Width>800</Width>
+                            <Height>720</Height>
+                        </Size>
+                    </Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./Store/images/panel_icon_light.png</Icon>
+                        <Icon Type="RollOver">./Store/images/panel_icon_light.png</Icon>
+                        <Icon Type="DarkNormal">./Store/images/panel_icon_dark.png</Icon>
+                        <Icon Type="DarkRollOver">./Store/images/panel_icon_dark.png</Icon>
+                    </Icons>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+        <Extension Id="com.cutterman.PluginStoreInner">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./Store/inner.html</MainPath>
+                    <ScriptPath>./Store/jsx/init.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>false</AutoVisible>
+                    <StartOn>
+                        <!-- Photoshop dispatches this event on startup -->
+                        <Event>applicationActivate</Event>
+                        <!-- Premiere Pro dispatches this event on startup -->
+                        <Event>com.adobe.csxs.events.ApplicationActivate</Event>
+                        <!-- PS on Windows isn't consistently firing the above events on launch.
+                             To ensure that we're launched, also start on the following -->
+                        <Event>com.adobe.csxs.events.AppOnline</Event>
+                        <Event>documentAfterActivate</Event>
+                    </StartOn>
+                </Lifecycle>
+                <UI>
+                    <Type>Custom</Type>
+                    <Geometry>
+                        <Size>
+                            <Width>1</Width>
+                            <Height>1</Height>
+                        </Size>
+                    </Geometry>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+
+    </DispatchInfoList>
+</ExtensionManifest>

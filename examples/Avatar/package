@@ -1,0 +1,9 @@
+#! /bin/sh
+
+########################################
+## Shell script created by xiaoqiang
+## @brief
+## @date
+########################################
+
+../Nicon/package/ZXPSignCmd -sign ../Avatar Avatar.1.0.1.zxp ../Nicon/package/nicon.p12 04041029 -tsa https://timestamp.geotrust.com/tsa

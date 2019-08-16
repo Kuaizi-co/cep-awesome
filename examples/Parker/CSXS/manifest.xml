@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="Parker" ExtensionBundleVersion="3.0.0" Version="5.0">
+	<Author> xiaoqiang </Author>
+    <ExtensionList>
+        <Extension Id="Parker" Version="3.0.0"/>
+    </ExtensionList>
+    <ExecutionEnvironment>
+        <HostList>
+            <Host Name="PHXS" Version="15.0" />
+            <Host Name="PHSP" Version="15.0" />
+        </HostList>
+        <LocaleList>
+            <Locale Code="All"/>
+        </LocaleList>
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="5.0"/>
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <Extension Id="Parker">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./panel/index.html</MainPath>
+                    <ScriptPath>./panel/jsx/init.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Parker</Menu>
+                    <Geometry>
+                        <Size>
+                            <Width>230</Width>
+                            <Height>315</Height>
+                        </Size>
+                        <MinSize>
+                            <Width>230</Width>
+                            <Height>315</Height>
+                        </MinSize>
+                    </Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./panel/img/panel_icon_light.png</Icon>
+                        <Icon Type="RollOver">./panel/img/panel_icon_light.png</Icon>
+                        <Icon Type="DarkNormal">./panel/img/panel_icon_dark.png</Icon>
+                        <Icon Type="DarkRollOver">./panel/img/panel_icon_dark.png</Icon>
+                    </Icons>					
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>

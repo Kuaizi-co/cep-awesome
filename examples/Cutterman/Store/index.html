@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Plugin Store</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Panel/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../Panel/css/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../Panel/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <script src="../Panel/js/vendor/CSInterface-6.1.0.js"></script>
+    <script src="../Panel/js/vendor/jquery.js"></script>
+    <script src="../Panel/js/vendor/bootstrap.min.js"></script>
+  </head>
+  <body class="gray">
+    <div class="wrapper" id="wrapper">
+      <div class="header">
+          <span class="logo">插件应用商店</span>
+          <a href="#" @click.prevent="openInstallDir()">打开安装位置</a>
+      </div>
+      <div class="list">
+          <div class="recommand" v-html="recommend"></div>
+          <div class="items">
+              <ul>
+                  <li v-for="item in list">
+                      <img v-bind:src="item.thumbnail" width="120" />
+                      <div class="content">
+                          <h3><a href="#" @click.prevent="detail(item)">{{ item.title }} - {{ item.name }}</a></h3>
+                          <p>{{ item.description }}</p>
+                          <div class="info">
+                              <i class="fa fa-star"></i><span>{{ item.star }}</span>
+                              <i class="fa fa-cny"></i><span>{{ item.price }}</span>
+                              <i class="fa fa-user"></i><span>{{ item.author }}</span>
+                              <i class="fa fa-tags"></i><span>{{ item.version }}</span>
+                          </div>
+                          <div class="action">
+                              <button v-if="!item.installed" @click="install(item)">{{ item.install_text }}</button>
+                              <div v-if="item.installed">
+                                  <span>{{ item.install_text }}</span><br/>
+                                  <a href="#" @click.prevent="install(item)">重新下载</a>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="toast" id="toast" style="display:none;"><span>这里是提示文字</span></div>
+      <div class="cover" id="cover" style="display:none;"></div>
+      <div class="dialog" id="dialog" style="display:none;">
+        <div class="dialog-inner"><a class="fa fa-close" href="javascript:;" onclick="bridge.hideDialog()"></a>
+          <div class="title">提示</div>
+          <div class="content"> 这里是对话框内容</div>
+        </div>
+      </div>
+    </div>
+    <script src="../Panel/js/vendor/vue.js"></script>
+    <script src="../Panel/js/vendor/bluebird.min.js"></script>
+    <script src="./js/Store.js"></script>
+    <script>
+        app.load();
+    </script>
+  </body>
+</html>

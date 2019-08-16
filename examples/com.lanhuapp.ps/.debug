@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+  <Extension Id="ps.sf.SheJiZhuLi">
+    <HostList>
+      <Host Name="PHSP" Port="8888" />
+      <Host Name="PHXS" Port="8888" />
+    </HostList>
+  </Extension>
+</ExtensionList>

@@ -1,0 +1,115 @@
+<div class="panel">
+    <div class="header">
+        <a href="javascript:;" ng-click="goUser()" class="user"></a> <span class="logo"></span> <a href="javascript:;" ng-click="goSetting()" class="setting"></a>
+    </div>
+    <div class="main-panel">
+        <div class="row" ng-repeat="row in buttons">
+            <div class="col-xs-4" ng-repeat="button in row">
+                <div class="button">
+                    <a href="javascript:;" ng-click="action(button[0])" class="btn-action"><span class="btn-icon" ng-class="button[0]"></span></a>
+                    <a href="javascript:;" ng-click="setLayer(button[0])" class="btn-option"><span class="arrow-down"></span></a>
+                </div>
+                <p ng-bind="button[1]"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="export-btn" ng-click="action('export')">导 出</button>
+    </div>
+
+
+    <div class="layer-mask" ng-show="showLayer != ''" ng-click="closeLayer()"></div>
+    <div class="layers" ng-show="showLayer != ''">
+        <div ng-repeat="(key, item) in subButtons" class="layer" ng-class="key" ng-show="key == showLayer">
+            <div class="row">
+                <div class="col-xs-3" ng-repeat="button in item">
+                    <div class="button">
+                        <a href="javascript:;"  ng-click="action(button);" class="btn-action"><span class="btn-icon" ng-class="button"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="layer" ng-show="showLayer == 'description'">
+            <div class="row">
+                <textarea id="description-text" class="description-input"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-center"> <button class="confirm-btn" ng-click="addDescription()">确 定</button> </div>
+                <div class="col-xs-6 text-center"> <button class="confirm-btn" ng-click="closeLayer()">取 消</button> </div>
+            </div>
+        </div>
+
+        <div class="layer text-layer" ng-show="showLayer == 'text'">
+            <div class="row">
+                <div class="col-xs-4"> <a ng-click="setting.text.family = !setting.text.family" class="checkbox" ng-class="{'checked' : setting.text.family}" href="javascript:;">字体</a> </div>
+                <div class="col-xs-4"> <a ng-click="setting.text.size = !setting.text.size" class="checkbox" ng-class="{'checked' : setting.text.size}" href="javascript:;">字号</a> </div>
+                <div class="col-xs-4"> <a ng-click="setting.text.color = !setting.text.color" class="checkbox" ng-class="{'checked' : setting.text.color}" href="javascript:;">颜色</a> </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"> <a ng-click="setting.text.height = !setting.text.height" class="checkbox" ng-class="{'checked' : setting.text.height}" href="javascript:;">行高</a> </div>
+                <div class="col-xs-4"> <a ng-click="setting.text.shadow = !setting.text.shadow" class="checkbox" ng-class="{'checked' : setting.text.shadow}" href="javascript:;">投影</a> </div>
+                <div class="col-xs-4"> <a ng-click="setting.text.stroke = !setting.text.stroke" class="checkbox" ng-class="{'checked' : setting.text.stroke}" href="javascript:;">描边</a> </div>
+            </div>
+            <div class="row text-align">
+                <div class="col-xs-3">标注位置</div>
+                <div class="col-xs-9"><div class="line"></div> </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"> <a class="radio" ng-click="setting.text.direction = 0" ng-class="{'selected': setting.text.direction == 0}" href="javascript:;"></a><span class="text-align-right"></span> </div>
+                <div class="col-xs-6"> <a class="radio" ng-click="setting.text.direction = 1" ng-class="{'selected': setting.text.direction == 1}" href="javascript:;"></a> <span class="text-align-bottom"></span> </div>
+            </div>
+            <div class="btn-container">
+                <button class="confirm-btn" ng-click="closeLayer()">确 定</button>
+            </div>
+        </div>
+
+
+        <div class="layer style-layer" ng-show="showLayer == 'style'">
+            <div class="row">
+                <div class="col-xs-4"> <a class="checkbox" ng-class="{'checked': setting.style.color}" ng-click="setting.style.color = !setting.style.color" href="javascript:;">颜色</a> </div>
+                <div class="col-xs-4"> <a class="checkbox" ng-class="{'checked': setting.style.opacity}" ng-click="setting.style.opacity = !setting.style.opacity" href="javascript:;">透明度</a> </div>
+                <div class="col-xs-4"> <a class="checkbox" ng-class="{'checked': setting.style.shadow}" ng-click="setting.style.shadow = !setting.style.shadow" href="javascript:;">投影</a> </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"> <a class="checkbox" ng-class="{'checked': setting.style.stroke}" ng-click="setting.style.stroke = !setting.style.stroke" href="javascript:;">描边</a> </div>
+                <div class="col-xs-4"> <a class="checkbox" ng-class="{'checked': setting.style.radius}" ng-click="setting.style.radius = !setting.style.radius" href="javascript:;">圆角&nbsp;&nbsp;&nbsp;</a> </div>
+            </div>
+            <div class="btn-container text-align">
+                <button class="confirm-btn" ng-click="closeLayer()">确 定</button>
+            </div>
+        </div>
+
+
+
+        <div class="layer mask-layer" ng-show="showLayer == 'mask'">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">宽</span>
+                        <input type="text" ng-model="setting.mask.width" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">高</span>
+                        <input type="text" ng-model="setting.mask.height" class="form-control" placeholder="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">透明度</span>
+                        <input type="text" class="form-control opacity" ng-model="setting.mask.opacity" />
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container text-align">
+                <button class="confirm-btn" ng-click="closeLayer()">确 定</button>
+            </div>
+        </div>
+    </div>
+
+</div>

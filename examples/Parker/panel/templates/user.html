@@ -1,0 +1,18 @@
+<div class="user">
+    <div class="header">
+        <a href="javascript:;" ng-click="back()" class="back"><i class="glyphicon glyphicon-menu-left"></i></a>
+        <span>帐号</span>
+    </div>
+    <div class="avatar"><img width="80" ng-src="{{user.avatar}}" alt=""></div>
+
+    <div ng-show="hasUpdate" class="update"><a style="color: red" href="javascript:;" ng-click="download()">发现新版本{{newVersion}}，点击下载</a></div>
+    <div class="name" ng-bind="user.email"></div>
+
+    <div ng-show="!isAuthorized" class="trial">试用阶段, 剩余{{trialLeft}}天</div>
+    <div ng-show="!isAuthorized" class="trial"><a href="javascript:;" ng-click="buy()">去购买（60RMB）</a> </div>
+    <div ng-show="isAuthorized" class="trial">已授权,终身使用</div>
+
+    <div class="ver">当前版本 {{version}}</div>
+
+    <button class="logout" ng-click="logout()">退出登录</button>
+</div>

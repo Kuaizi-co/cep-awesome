@@ -1,0 +1,14 @@
+#! /bin/sh
+
+########################################
+## Shell script created by xiaoqiang
+## @brief
+## @date
+########################################
+
+k=1;
+for i in `ls`
+do
+    mv $i "${k}.jpg"
+    k=`expr $k + 1`
+done

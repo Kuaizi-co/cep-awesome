@@ -1,0 +1,73 @@
+body {
+	background-color: #2b3034;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+.row {
+	text-align: center;
+	overflow: hidden;
+}
+.poster-pic {
+	width: 175px;
+	height: 57px;
+	background: url(../images/svg.png) no-repeat;
+	margin: 30px auto;
+}
+.export {
+	margin-top: 50px;
+}
+.clickBtn {
+	width: 195px;
+	height: 52px;
+	line-height: 52px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #0b977b;
+	text-align: center;
+	color: #fff;
+	margin: 20px auto 0;
+	cursor: pointer;
+}
+
+.con-row {
+	width: 255px;
+	margin: 0 auto;
+}
+.text-input,.iconBtn {
+	float: left;
+}
+.text-input {
+	width: 190px;
+	height: 27px;
+	line-height: 27px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #f7f9f8;
+	border: none;
+	font-size: 12px;
+	padding-left: 5px;
+}
+.iconBtn {
+	width: 60px;
+	height: 27px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #697692;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+}

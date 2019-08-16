@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <!--<script async type="text/javascript" src="https://static.lanhuapp.com/ps_ex_lib_start.js"></script>-->
+    <script src="JS/CSInterface.js"></script>
+    <!--载入样式表-->
+    <link href="./CSS/style.css" type="text/css" rel="stylesheet">
+    <script>
+
+    </script>
+</head>
+
+<body spellcheck="false">
+
+    <div id="root">
+        <view-main></view-main>
+    </div>
+
+    <div id="script-box">
+        <script type="text/javascript" src="./JS/start.js"></script>
+    </div>
+
+    <script type='text/javascript'>
+        window.addVersionDom =  function() {
+
+            setTimeout(function() {
+                var el = document.createElement("script");
+                el.type = "text/javascript";
+                el.async = true;
+                el.src = "https://static.lanhuapp.com/ps_ex_lib_end.js?"+Math.floor(Math.random()*1000000);
+                document.getElementsByTagName("body")[0].appendChild(el);
+            }, 500);
+        }
+        window.addVersionDom()
+    </script>
+</body>
+
+
+</html>

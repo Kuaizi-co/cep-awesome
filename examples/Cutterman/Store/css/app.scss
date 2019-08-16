@@ -1,0 +1,350 @@
+
+
+$color-primary: #579ddb;
+$color-info: #3db8da;
+$color-success: #8cc74f;
+$color-mint: #3acaa1;
+$color-mint-hover: #3abaa1;
+$color-warning: #f0a636;
+$color-danger: #f75d3f;
+$color-pink: #df74a1;
+$color-purple: #98518e;
+$color-dark: #2e3235;
+
+$theme: (
+        'black': (
+                'header_bg': #262626,
+                'header_border': #212121,
+                'text': #bfbfbf,
+                'text-gray': #999
+        ),
+        'dark': (
+                'header_bg': #424242,
+                'header_border': #383838,
+                'text': #bfbfbf,
+                'text-gray': #999
+        ),
+        'gray': (
+                'header_bg': #c8c8c8,
+                'header_border': #a3a3a3,
+                'text': #333333,
+                'text-gray': #666
+        ),
+        'white': (
+                'header_bg': #dbdbdb,
+                'header_border': #c4c4c4,
+                'text': #333333,
+                'text-gray': #666
+        )
+);
+
+$logo:(
+        'white': 'gray',
+        'gray' : 'gray',
+        'dark' : 'dark',
+        'black': 'dark'
+);
+
+$button:(
+        'white': (
+                'border': #cccccc,
+                'background': #ffffff,
+                'background-hover': #f0f0f0,
+                'background-active': #dbdbdb,
+                'active': #d9d9d9
+        ),
+        'gray' : (
+                'border': #949494,
+                'background': #cccccc,
+                'background-hover': #b8b8b8,
+                'background-active': #a3a3a3,
+                'active': #d9d9d9
+        ),
+        'dark' : (
+                'border': #666666,
+                'background': #454545,
+                'background-hover': #535353,
+                'background-active': #666666,
+                'active': #d9d9d9
+        ),
+        'black': (
+                'border': #474747,
+                'background': #292929,
+                'background-hover': #323232,
+                'background-active': #454545,
+                'active': #d9d9d9
+        )
+);
+
+$checkbox: (
+        'white': (
+                'border': #a2a2a2,
+                'background': #e6e6e6
+        ),
+        'gray': (
+                'border': #a2a2a2,
+                'background': #e6e6e6
+        ),
+        'dark': (
+                'border': #272727,
+                'background': #313131
+        ),
+        'black': (
+                'border': #272727,
+                'background': #313131
+        )
+);
+
+
+$input: (
+        'white': (
+                'border': #a2a2a2,
+                'color': #d56d3d,
+                'from': #e4e4e4,
+                'to': #e6e6e6,
+                'shadow': #cdcdcd,
+        ),
+        'gray': (
+                'border': #a2a2a2,
+                'color': #d56d3d,
+                'from': #e4e4e4,
+                'to': #e6e6e6,
+                'shadow': #cdcdcd,
+        ),
+        'dark': (
+                'border': #444444,
+                'color': #d77d53,
+                'from': #404040,
+                'to': #3a3a3a,
+                'shadow': #333333,
+        ),
+        'black': (
+                'border': #222222,
+                'color': #d77d53,
+                'from': #2d2d2d,
+                'to': #303030,
+                'shadow': #222222,
+        )
+);
+
+$hr-color: (
+        'white': (
+                'background': #c4c4c4
+        ),
+        'gray': (
+                'background': #949494
+        ),
+        'dark': (
+                'background': #424242
+        ),
+        'black': (
+                'background': #212121
+        )
+);
+
+@mixin get-image($t, $name) {
+    $dir-key: map-get($logo, $t);
+    background: url("../images/#{$dir-key}/#{$name}") 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
+@mixin common-button($t) {
+    $c: map-get($button, $t);
+    border-radius: 3px;
+    border: 1px solid map-get($c, "border");
+    background: map-get($c, 'background');
+    height: 32px;
+    font-size: 14px;
+    color: map-get($c, "color");
+    text-shadow: none;
+    cursor: pointer;
+    outline: none;
+}
+
+@mixin common-button-hover($t) {
+    $c: map-get($button, $t);
+    background: map-get($c, 'background-hover');
+    outline: none;
+}
+
+@mixin common-button-active($t) {
+    $c: map-get($button, $t);
+    background: map-get($c, 'background-active');
+    outline: none;
+    color: map-get($c, "active-color");
+}
+
+@mixin main($t) {
+    body.#{$t} {
+        $color: map-get($theme, $t);
+        $logo-key: map-get($logo, $t);
+        $input-color: map-get($input, $t);
+        margin: 0;
+        padding: 0;
+        //font-family: 'Microsoft Yahei', 'Hiragino Sans GB', Verdana, sans-serif;
+        font-family: 'Courier New', Helvetica, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', sans-serif;
+        color: map-get($color, 'text');
+        font-size: 12px;
+        line-height: 20px;
+        overflow: hidden;
+
+        a[target="_blank"] {
+            position: absolute;
+            top: -100px;
+            left: - 100px;
+            visibility: hidden;
+        }
+
+
+        //::-webkit-scrollbar{width:0}
+
+        ul, li, p, h1, h2, h3, h4, dl, dt, dd {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        a {
+            color: map-get($color, 'text');
+            text-decoration: none;
+            &:hover {
+                color: #ed5964;
+            }
+        }
+
+
+        button {
+            @include common-button($t);
+        }
+
+        button:hover {
+            @include common-button-hover($t);
+        }
+
+        button.active, button:active {
+            @include common-button-active($t);
+        }
+
+        $cb: map-get($button, $t);
+        a.checkbox {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid map-get($cb, "border");
+            border-radius: 3px;
+            background: map-get($cb, "background");
+        }
+        a.checked {
+            background-image: url("../images/checkbox-checked.png");
+            background-size: 100% 100%;
+        }
+
+        input[type=text],
+        input[type=password] ,
+        div.selector {
+            border: 1px solid map-get($input-color, "border");
+            border-radius: 3px;
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(map-get($input-color, "from")), to(map-get($input-color, "to")));
+            box-shadow: 0 2px 1px 0 map-get($input-color, "shadow") inset;
+            color: map-get($input-color, "color");
+            font-size: 14px;
+            outline: none;
+            height: 24px;
+            text-align: center;
+        }
+
+        .header {
+            height: 40px;
+            line-height: 40px;
+            background: map-get($color, 'header_bg');
+            border-bottom: 1px solid map-get($color, 'header_border');
+            color: map-get($color, 'link');
+            text-align: left;
+            overflow: hidden;
+
+            .logo {
+                margin-left: 20px;
+                font-size: 14px;
+            }
+
+            a {
+                float: right;
+                margin-right: 10px;
+            }
+
+        }
+
+        .toast {
+            position: absolute;
+            top: 100px;
+            width: 100%;
+            z-index: 100001;
+            text-align: center;
+        }
+        .toast span {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 700px;
+            z-index: 20;
+            background: #000;
+            opacity: 0.7;
+        }
+        .dialog {
+            position: absolute;
+            z-index: 30;
+            top: 150px;
+            width: 100%;
+            .dialog-inner {
+                position: relative;
+                width: 350px;
+                margin: 0 auto;
+                background: map-get($color, "header_bg");
+                box-shadow: 2px 2px 1px map-get($color, "header_border");
+                padding: 10px;
+                line-height: 24px;
+
+                .title {
+                    font-size: 15px;
+                    margin-bottom: 10px;
+                }
+
+                .content {
+                    a {
+                        color: $color-mint;
+                        text-decoration: underline;
+                    }
+                }
+
+                a.fa {
+                    position: absolute;
+                    right: 10px;
+                    cursor: pointer;
+                    top: 6px;
+                }
+            }
+        }
+    }
+}
+
+@import "list";
+
+
+@include main('gray');
+@include main('white');
+@include main('dark');
+@include main('black');

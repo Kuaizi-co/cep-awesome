@@ -1,0 +1,50 @@
+<ExtensionManifest Version="3.0" ExtensionBundleId="com.configurator.svgArtisan" ExtensionBundleVersion="1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Author><![CDATA[ISUX]]></Author>
+  <Abstract><![CDATA[&quot;svgArtisan&quot; is a customized panel for Photoshop CC developed by Configurator 4. Once this extension is installed, &quot;svgArtisan&quot; can be launched from Window &gt; Extension &gt; svgArtisan. Select, Window &gt; Extension &gt; to close the svgArtisan panel.]]></Abstract>
+  <ExtensionList>
+    <Extension Id="com.configurator.svgArtisan" Version="1.0.0"/>
+  </ExtensionList>
+  <ExecutionEnvironment>
+    <HostList>
+      <Host Name="PHXS" Version="[14.0,14.9]"/>
+      <Host Name="PHSP" Version="[14.0,14.9]"/>
+    </HostList>
+    <LocaleList>
+      <Locale Code="All"/>
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="3.0"/>
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+  <DispatchInfoList>
+    <Extension Id="com.configurator.svgArtisan">
+      <DispatchInfo>
+        <Resources>
+          <SwfPath>./content/Configurator-Panel.swf</SwfPath>
+          <ScriptPath>./content/Configurator-Panel.jsx</ScriptPath>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Menu>svgArtisan</Menu>
+          <Geometry>
+            <Size>
+              <Height>350</Height>
+              <Width>300</Width>
+            </Size>
+            <MaxSize>
+              <Height>350</Height>
+              <Width>300</Width>
+            </MaxSize>
+            <MinSize>
+              <Height>350</Height>
+              <Width>300</Width>
+            </MinSize>
+          </Geometry>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+</ExtensionManifest>

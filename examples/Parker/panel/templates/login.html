@@ -1,0 +1,16 @@
+<div class="login" id="login" ng-show="!isLogin">
+    <div class="login-panel" ng-show="!isLogining">
+        <img width="60" height="60" src="./img/avatar.png"/>
+        <p>您需要登录才能使用</p>
+        <form class="text-center" role="form" name="form" ng-submit="login()" accept-charset="utf-8">
+            <div class="form-group">
+                <input type="text" name="mail" id="mail" class="form-control" placeholder="邮箱" required="required" ng-model="config.email">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" class="form-control" placeholder="密码" required="required" ng-model="config.password">
+            </div>
+            <div><button type="submit" class="btn btn-blue">登  录</button></div>
+        </form>
+        <p><a ng-click="register()" class="link" href="javascript:;">没有帐号，去注册</a></p>
+    </div>
+</div>
