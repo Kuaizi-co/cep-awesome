@@ -42,7 +42,7 @@
 * [https://github.com/mattirwin/Adobe-Scripts](https://github.com/mattirwin/Adobe-Scripts)
 * [https://github.com/mitmedialab/storybook-photoshop-jsx](https://github.com/mitmedialab/storybook-photoshop-jsx)
 * [https://github.com/Jeanhwea/psscript](https://github.com/Jeanhwea/psscript)
-
+* [https://gist.github.com/hilukasz?page=1](https://gist.github.com/hilukasz?page=1)
 
 ### 教程
 
