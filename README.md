@@ -43,6 +43,7 @@
 * [https://github.com/mitmedialab/storybook-photoshop-jsx](https://github.com/mitmedialab/storybook-photoshop-jsx)
 * [https://github.com/Jeanhwea/psscript](https://github.com/Jeanhwea/psscript)
 * [https://gist.github.com/hilukasz?page=1](https://gist.github.com/hilukasz?page=1)
+* [Fit Layer To Canvas.jsx](https://gist.github.com/jawinn/ab4df1c33d0743e41fd3)
 
 ### 教程
 
