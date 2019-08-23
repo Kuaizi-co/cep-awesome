@@ -1,6 +1,10 @@
 # cep-awesome
 
-### 案例
+### Get Started (上手)
+
+* [framework](https://github.com/Kuaizi-co/cep-awesome/tree/master/examples/Parker/panel/jsx/framework)
+
+### Show Case (案例)
 
 * [鹿班-阿里云](./examples/luban)
 * [享象派](./examples/com.xxpie.psplugin)
@@ -45,7 +49,7 @@
 * [https://gist.github.com/hilukasz?page=1](https://gist.github.com/hilukasz?page=1)
 * [Fit Layer To Canvas.jsx](https://gist.github.com/jawinn/ab4df1c33d0743e41fd3)
 
-### 教程
+### Course (教程)
 
 * [PS CEP教程](http://nullice.com/archives/category/note/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/adobe-cep)
 * [http://creativetuts.com/category/photoshop/](http://creativetuts.com/category/photoshop/)
