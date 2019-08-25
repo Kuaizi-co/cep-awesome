@@ -52,6 +52,7 @@
 ### Course (教程)
 
 * [PS CEP教程](http://nullice.com/archives/category/note/%E8%BD%AF%E4%BB%B6%E6%95%99%E7%A8%8B/adobe-cep)
+* [https://github.com/rjduran/adobe-scripting](https://github.com/rjduran/adobe-scripting)
 * [http://creativetuts.com/category/photoshop/](http://creativetuts.com/category/photoshop/)
 
 # LICENSE
