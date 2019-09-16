@@ -55,6 +55,9 @@
 * [https://github.com/rjduran/adobe-scripting](https://github.com/rjduran/adobe-scripting)
 * [http://creativetuts.com/category/photoshop/](http://creativetuts.com/category/photoshop/)
 
+## HELP
+* [About r-bin](https://community.adobe.com/t5/user/v2/viewprofilepage/user-id/7619033/page/1)
+
 # LICENSE
 
 (c) MIT LICENSE [www.kuaizi.ai](www.kuaizi.ai)
