@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="" ExtensionBundleId="ps.sf.SheJiZhuLi" ExtensionBundleVersion="2.0" Version="6.0"> <!-- MAJOR-VERSION-UPDATE-MARKER -->
+    <ExtensionList>
+        <Extension Id="ps.sf.SheJiZhuLi" Version="2.0"/>
+    </ExtensionList>
+
+    <ExecutionEnvironment>
+        <HostList>
+            <Host Name="PHXS" Version="[11.0,99.9]"/>
+            <Host Name="PHSP" Version="[11.0,99.9]"/>
+            <Host Name="ILST" Version="[15.0,21]"/>
+            <Host Name="IDSN" Version="[9,12]"/>
+        </HostList>
+
+        <LocaleList>
+            <Locale Code="All"/>
+        </LocaleList>
+
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="1.1"/> <!-- MAJOR-VERSION-UPDATE-MARKER -->
+        </RequiredRuntimeList>
+
+    </ExecutionEnvironment>
+
+
+    <DispatchInfoList>
+        <Extension Id="ps.sf.SheJiZhuLi">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./index.html</MainPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                        <Parameter>--mixed-context</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>设计助理</Menu>
+
+
+                    <Geometry>
+                        <Size>
+                            <Height>450</Height>
+                            <Width>260</Width>
+                        </Size>
+                        <MaxSize>
+                            <Height>1100</Height>
+                            <Width>310</Width>
+                        </MaxSize>
+                        <MinSize>
+                            <Height>400</Height>
+                            <Width>260</Width>
+                        </MinSize>
+                    </Geometry>
+
+                    <Icons>
+                        <Icon Type="Normal">./img/Light.png</Icon>
+                        <Icon Type="RollOver">./img/Light.png</Icon>
+                        <Icon Type="DarkNormal">./img/Dark.png</Icon>
+                        <Icon Type="DarkRollOver">./img/Dark.png</Icon>
+                    </Icons>
+                </UI>
+
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="imgcook.photoshop" ExtensionBundleName="ImgCook" ExtensionBundleVersion="1.1.2" Version="6.0">
+  <ExtensionList>
+    <Extension Id="imgcook.photoshop" Version="0.1.0"/>
+  </ExtensionList>
+  <ExecutionEnvironment>
+    <HostList>
+      <Host Name="PHXS" Version="16" />
+      <Host Name="PHSP" Version="16" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All"/>
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="6.0"/>
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+  <DispatchInfoList>
+    <Extension Id="imgcook.photoshop">
+      <DispatchInfo>
+        <Resources>
+          <MainPath>./index.html</MainPath>
+          <ScriptPath>./extendscript/index.jsx</ScriptPath>
+          <CEFCommandLine>
+            <Parameter>--allow-file-access-from-files</Parameter>
+            <Parameter>--allow-file-access</Parameter>
+            <Parameter>--enable-nodejs</Parameter>
+            <Parameter>--mixed-context</Parameter>
+          </CEFCommandLine>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Menu>ImgCook</Menu>
+          <Geometry>
+            <Size>
+              <Height>450</Height>
+              <Width>450</Width>
+            </Size>
+          </Geometry>
+          <Icons>
+            <Icon Type="Normal">./logo.png</Icon>
+            <Icon Type="RollOver">./logo.png</Icon>
+            <Icon Type="DarkNormal">./logo.png</Icon>
+            <Icon Type="DarkRollOver">./logo.png</Icon>
+          </Icons>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+</ExtensionManifest>

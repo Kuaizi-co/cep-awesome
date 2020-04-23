@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest ExtensionBundleId="com.fancynode.sweet-onion.extension" ExtensionBundleName="com.fancynode.sweet-onion" ExtensionBundleVersion="1.0.0"
+ Version="5.0">
+	<ExtensionList>
+		<Extension Id="com.fancynode.sweet-onion" Version="0.1.1" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="PHSP" Version="16.0" />
+			<Host Name="PHXS" Version="16.0" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+		    <RequiredRuntime Name="CSXS" Version="4.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+	<DispatchInfoList>
+		<Extension Id="com.fancynode.sweet-onion">
+			<DispatchInfo>
+				<Resources>
+					<MainPath>./index.html</MainPath>
+					<ScriptPath>./host/main.jsxbin</ScriptPath>
+					<CEFCommandLine>
+						<Parameter>--enable-nodejs</Parameter>
+						<Parameter>--ignore-certificate-errors</Parameter>
+					</CEFCommandLine>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>甜葱填图</Menu>
+					<Geometry>
+						<Size>
+							<Height>360</Height>
+							<Width>270</Width>
+						</Size>
+						<MaxSize>
+							<Height>360</Height>
+							<Width>270</Width>
+						</MaxSize>
+						<MinSize>
+							<Height>340</Height>
+							<Width>270</Width>
+						</MinSize>
+					</Geometry>
+					<Icons>
+						<Icon Type="Normal">./icons/icon-light.png</Icon>
+						<Icon Type="DarkNormal">./icons/icon-dark.png</Icon>
+					</Icons>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
